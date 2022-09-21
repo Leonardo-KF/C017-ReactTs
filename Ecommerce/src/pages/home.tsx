@@ -31,8 +31,6 @@ export function Home() {
     setRepos(response);
   }
 
-  repos[0].name.toLowerCase();
-
   function convertRepository(repo: Repository): string {
     return repo.name.toUpperCase();
   }

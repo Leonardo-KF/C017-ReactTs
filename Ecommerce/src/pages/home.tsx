@@ -1,67 +1,32 @@
-import { useState, useEffect } from "react";
-
-type Repository = {
-  html_url: string;
-  name: string;
-  id: number;
-};
-
-type Person = {
-  name: string;
-  age: number;
-  email: string;
-  gender: string;
-  description?: string;
-  repositories?: Repository[];
-};
+import { Card } from "../components/card/card";
+import { getProducts } from "../mocks/products";
+import { CardListDiv } from "./styles";
+import { useEffect, useState } from "react";
+import { Product } from "../utils/types/product.type";
 
 export function Home() {
-  const [repos, setRepos] = useState<Repository[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
-  const pessoa: Person = {
-    name: "Pessoa1",
-    age: 18,
-    email: "pessoa@gmail.com",
-    gender: "male",
-  };
-
-  async function getInfos() {
-    const data = await fetch("https://api.github.com/users/Leonardo-kf/repos");
-    const response = await data.json();
-    setRepos(response);
+  async function getProductsInfo() {
+    const allProducts = await getProducts();
+    setProducts(allProducts);
   }
-
-  function convertRepository(repo: Repository): string {
-    return repo.name.toUpperCase();
-  }
-
-  const text = convertRepository({
-    html_url: "abc",
-    id: 154352,
-    name: "test",
-  });
-
-  console.log(text);
 
   useEffect(() => {
-    getInfos();
+    getProductsInfo();
   }, []);
 
   return (
-    <div>
-      <h2>{pessoa.name.toLocaleUpperCase()}</h2>
-      <h2>{pessoa.age}</h2>
-      <h2>{pessoa.email}</h2>
-      <h2>{pessoa.gender}</h2>
-      <h1>Repositories:</h1>
-      <div>
-        {repos.map((item) => (
-          <div key={item.id}>
-            <h2>name: {item.name.toUpperCase()}</h2>
-            <h2>link: {item.html_url}</h2>
-          </div>
-        ))}
-      </div>
-    </div>
+    <CardListDiv>
+      {products.map((product) => (
+        <Card
+          id={product.id}
+          description={product.description}
+          imageURL={product.imageURL}
+          name={product.name}
+          price={product.price}
+        />
+      ))}
+    </CardListDiv>
   );
 }

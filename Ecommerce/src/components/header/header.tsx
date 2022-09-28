@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   HeaderButtons,
   HeaderComponent,
@@ -7,6 +7,8 @@ import {
 } from "./styles";
 
 export function Header() {
+  const navigate = useNavigate();
+
   return (
     <HeaderComponent>
       <HeaderLogo>
@@ -20,6 +22,13 @@ export function Header() {
       </HeaderSearch>
       <HeaderButtons>
         <div>
+          <button
+            onClick={() => {
+              navigate("/create");
+            }}
+          >
+            Cadastrar Produto
+          </button>
           <button>Carrinho</button>
           <button>Logout</button>
         </div>

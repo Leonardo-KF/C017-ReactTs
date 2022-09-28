@@ -4,6 +4,7 @@ import { Footer } from "./components/footer/footer";
 import { Header } from "./components/header/header";
 import { Home } from "./pages/home/home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CreateProduct } from "./pages/createProduct/createProduct";
 import GlobalStyle from "./styles/global";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/create" element={<CreateProduct />} />
       </Routes>
       <Footer />
     </BrowserRouter>

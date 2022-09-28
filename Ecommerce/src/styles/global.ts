@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
     * {
@@ -10,11 +10,12 @@ export default createGlobalStyle`
 
     html, body, #root {
         display: flex;
-        height: 100%;
+        min-height: 100%;
         width: 100%;
         flex-direction: column;
         align-items: center;
     }
+
 
     body {
         background-color: rgba(0,0,0, 0.9);
@@ -22,4 +23,11 @@ export default createGlobalStyle`
     }
     
 
+`;
+
+export const Content = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 `;

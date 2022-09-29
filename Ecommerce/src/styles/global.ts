@@ -16,13 +16,16 @@ export default createGlobalStyle`
         align-items: center;
     }
 
+    #root {
+        display: flex;
+        justify-content: space-between;
+        min-height: 100vh;
+    }
 
     body {
         background-color: rgba(0,0,0, 0.9);
         color: #FFFF
     }
-    
-
 `;
 
 export const Content = styled.div`
@@ -30,4 +33,5 @@ export const Content = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  width: 100%;
 `;

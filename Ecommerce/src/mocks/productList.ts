@@ -24,4 +24,44 @@ export const productList = [
     imageURL:
       "https://images-na.ssl-images-amazon.com/images/I/31IZgnDz8ES._AC_SX184_.jpg",
   },
+  {
+    id: "fehg;lgk",
+    name: "Multifuncional Epson",
+    description: "Essa multifuncional é perfeita para seu escritório",
+    price: 129.9,
+    imageURL:
+      "https://images-na.ssl-images-amazon.com/images/I/31IZgnDz8ES._AC_SX184_.jpg",
+  },
+  {
+    id: "fehg;lgk",
+    name: "Multifuncional Epson",
+    description: "Essa multifuncional é perfeita para seu escritório",
+    price: 129.9,
+    imageURL:
+      "https://images-na.ssl-images-amazon.com/images/I/31IZgnDz8ES._AC_SX184_.jpg",
+  },
+  {
+    id: "fehg;lgk",
+    name: "Multifuncional Epson",
+    description: "Essa multifuncional é perfeita para seu escritório",
+    price: 129.9,
+    imageURL:
+      "https://images-na.ssl-images-amazon.com/images/I/31IZgnDz8ES._AC_SX184_.jpg",
+  },
+  {
+    id: "fehg;lgk",
+    name: "Multifuncional Epson",
+    description: "Essa multifuncional é perfeita para seu escritório",
+    price: 129.9,
+    imageURL:
+      "https://images-na.ssl-images-amazon.com/images/I/31IZgnDz8ES._AC_SX184_.jpg",
+  },
+  {
+    id: "fehg;lgk",
+    name: "Multifuncional Epson",
+    description: "Essa multifuncional é perfeita para seu escritório",
+    price: 129.9,
+    imageURL:
+      "https://images-na.ssl-images-amazon.com/images/I/31IZgnDz8ES._AC_SX184_.jpg",
+  },
 ];

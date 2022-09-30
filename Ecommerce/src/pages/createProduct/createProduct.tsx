@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { productList } from "../../mocks/productList";
 import { Product } from "../../utils/types/product.type";
 import { ContentDiv } from "./styles";
+import { api } from "../../mocks/products";
 
 export function CreateProduct() {
   const navigate = useNavigate();
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const newProduct: Product = {
@@ -18,7 +19,7 @@ export function CreateProduct() {
       imageURL: e.currentTarget.productImage.value,
     };
 
-    productList.push(newProduct);
+    await api.createProduct(newProduct);
 
     navigate("/");
   }
@@ -28,13 +29,13 @@ export function CreateProduct() {
       <h2>Cadatro de Produtos</h2>
       <form onSubmit={handleSubmit}>
         <label>Product Name</label>
-        <input type="text" name="productName"></input>
+        <input type="text" name="productName" required></input>
         <label>Product Description</label>
-        <input type="text" name="productDescription"></input>
+        <input type="text" name="productDescription" required></input>
         <label>Product Price</label>
-        <input type="number" name="productPrice"></input>
+        <input type="number" step="0.01" name="productPrice" required></input>
         <label>Product Image</label>
-        <input type="text" name="productImage"></input>
+        <input type="text" name="productImage" required></input>
         <button type="submit">Enviar</button>
       </form>
     </ContentDiv>

@@ -15,7 +15,7 @@ export const ContentDiv = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 30%;
   }
 
   input {

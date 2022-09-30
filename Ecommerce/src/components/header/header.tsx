@@ -14,7 +14,12 @@ export function Header() {
       <HeaderLogo>
         <Link to="/">
           <h1>Tabajara</h1>
-          <img src="" alt="logo" />
+          <img
+            src="./public/comprar.png"
+            alt="logo"
+            height="30px"
+            width="30px"
+          />
         </Link>
       </HeaderLogo>
       <HeaderSearch>

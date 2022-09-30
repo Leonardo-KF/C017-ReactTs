@@ -1,10 +1,8 @@
 import { Product } from "../types/product.type";
 import axios from "axios";
 
-axios.create({
-  baseURL: "http://localhost:3001",
-  headers: { "Content-Type": "application/json" },
-});
+axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 export const api = {
   getProducts: async (): Promise<Product[] | undefined> => {

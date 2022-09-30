@@ -1,4 +1,4 @@
-import { Product } from "../types/product.type";
+import { Product, ProductInput } from "../types/product.type";
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:3001";
@@ -10,11 +10,14 @@ export const api = {
       const products = await axios.get("/product");
       return products.data;
     } catch (err: any) {
+      console.log(err);
       alert("Erro no servidor");
     }
   },
 
-  createProduct: async (product: Product): Promise<Product | undefined> => {
+  createProduct: async (
+    product: ProductInput
+  ): Promise<Product | undefined> => {
     try {
       const newProduct = await axios.post("/product/create", product);
       return newProduct.data;

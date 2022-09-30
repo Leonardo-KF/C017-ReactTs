@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { Product } from "../../utils/types/product.type";
+import { ProductInput } from "../../utils/types/product.type";
 import { ContentDiv } from "./styles";
 import { api } from "../../utils/api/api";
 
@@ -10,17 +10,20 @@ export function CreateProduct() {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const newProduct: Product = {
-      id: "1",
+    const newProduct: ProductInput = {
       name: e.currentTarget.productName.value,
       description: e.currentTarget.productDescription.value,
-      price: e.currentTarget.productPrice.value,
+      price: parseFloat(e.currentTarget.productPrice.value),
       imageURL: e.currentTarget.productImage.value,
     };
 
-    await api.createProduct(newProduct);
+    // 0.5 Everton preço como string
 
-    navigate("/");
+    const product = await api.createProduct(newProduct);
+
+    if (product) {
+      navigate("/");
+    }
   }
 
   return (

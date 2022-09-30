@@ -1,5 +1,5 @@
 import { Card } from "../../components/card/card";
-import { api } from "../../mocks/products";
+import { api } from "../../utils/api/api";
 import { CardListDiv } from "./styles";
 import { useEffect, useState } from "react";
 import { Product } from "../../utils/types/product.type";

@@ -1,4 +1,4 @@
-import { Product } from "../utils/types/product.type";
+import { Product } from "../types/product.type";
 import axios from "axios";
 
 axios.create({

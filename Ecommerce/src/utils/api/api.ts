@@ -25,4 +25,15 @@ export const api = {
       alert("Erro ao criar o produto");
     }
   },
+
+  deleteProduct: async (productId: string): Promise<boolean | undefined> => {
+    try {
+      const isDeleted = await axios.delete("/product/delete/" + productId);
+      if (isDeleted.status === 200) {
+        return true;
+      }
+    } catch (err: any) {
+      alert("Erro ao deletar o produto");
+    }
+  },
 };

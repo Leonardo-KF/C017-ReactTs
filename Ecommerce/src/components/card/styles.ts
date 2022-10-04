@@ -23,3 +23,26 @@ export const CardSection = styled.section`
     font-size: 1rem;
   }
 `;
+
+export const ButtonsDiv = styled.div`
+  display: flex;
+  width: 100%;
+
+  padding: 10px;
+  border-radius: 5px;
+  justify-content: space-evenly;
+`;
+
+type ButtonColor = {
+  color: string;
+};
+
+export const Buttons = styled.button<ButtonColor>`
+  border: none;
+  background-color: ${(props) => props.color};
+  cursor: pointer;
+  width: 30%;
+  height: 25px;
+  border-radius: 10px;
+  color: white;
+`;

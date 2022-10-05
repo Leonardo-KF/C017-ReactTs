@@ -64,4 +64,16 @@ export const api = {
       );
     }
   },
+
+  updateProduct: async (product: Product): Promise<Product | undefined> => {
+    try {
+      const updatedProduct = await axios.patch(
+        "/product/find/" + product.id,
+        product
+      );
+      return updatedProduct.data;
+    } catch (err: any) {
+      handleError("Erro ao atualizar o produto", err.response.data.message[0]);
+    }
+  },
 };

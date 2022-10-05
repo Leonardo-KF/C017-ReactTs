@@ -31,8 +31,14 @@ export function CreateProduct() {
     };
 
     // 0.5 Everton preço como string
-
-    const ProductResponse = await api.createProduct(newProduct);
+    let ProductResponse;
+    if (id) {
+      const productToUpdate = { ...newProduct, id: id };
+      ProductResponse = await api.updateProduct(productToUpdate);
+      console.log(ProductResponse);
+    } else {
+      ProductResponse = await api.createProduct(newProduct);
+    }
 
     if (ProductResponse) {
       navigate("/");

@@ -52,4 +52,16 @@ export const api = {
       );
     }
   },
+
+  getProductById: async (productId: string): Promise<Product | undefined> => {
+    try {
+      const product = await axios.get("/product/find/" + productId);
+      return product.data;
+    } catch (err) {
+      handleError(
+        "Produto não encontrado",
+        "Nenhum produto com esse id foi encontrado no servidor"
+      );
+    }
+  },
 };

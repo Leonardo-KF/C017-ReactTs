@@ -2,6 +2,7 @@ import { api } from "../../utils/api/api";
 import { Product } from "../../utils/types/product.type";
 import { CardSection, ButtonsDiv, Buttons } from "./styles";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 interface CardProps extends Product {
   updatePage: () => void;
@@ -15,6 +16,8 @@ export function Card({
   price,
   updatePage,
 }: CardProps) {
+  const navigate = useNavigate();
+
   async function DeleteCard() {
     swal({
       title: "Deletar Produto?",
@@ -54,7 +57,14 @@ export function Card({
       <span>{price}</span>
       <h3>{description}</h3>
       <ButtonsDiv>
-        <Buttons color="blue">Editar</Buttons>
+        <Buttons
+          color="blue"
+          onClick={() => {
+            navigate("/update/" + id);
+          }}
+        >
+          Editar
+        </Buttons>
         <Buttons color="red" onClick={DeleteCard}>
           Deletar
         </Buttons>

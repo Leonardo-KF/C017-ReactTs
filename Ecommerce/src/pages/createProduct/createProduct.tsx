@@ -78,7 +78,9 @@ export function CreateProduct() {
           name="productImage"
           required
         ></input>
-        <button type="submit">Enviar</button>
+        <section>
+          <button type="submit">Enviar</button>
+        </section>
       </form>
     </ContentDiv>
   );

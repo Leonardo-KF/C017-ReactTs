@@ -24,4 +24,29 @@ export const ContentDiv = styled.div`
     padding-left: 5px;
     width: 100%;
   }
+
+  section {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+  }
+
+  button {
+    display: flex;
+    height: 25px;
+    width: 55px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    color: black;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    :hover {
+      background-color: blue;
+    }
+  }
 `;

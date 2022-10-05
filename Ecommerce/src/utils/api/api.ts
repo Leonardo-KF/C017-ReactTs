@@ -1,8 +1,18 @@
 import { Product, ProductInput } from "../types/product.type";
 import axios from "axios";
+import swal from "sweetalert";
 
 axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.headers.post["Content-Type"] = "application/json";
+
+function handleError(text: string, description: string) {
+  swal({
+    title: text,
+    text: description,
+    icon: "warning",
+    timer: 5000,
+  });
+}
 
 export const api = {
   getProducts: async (): Promise<Product[] | undefined> => {
@@ -10,8 +20,10 @@ export const api = {
       const products = await axios.get("/product");
       return products.data;
     } catch (err: any) {
-      console.log(err);
-      alert("Erro no servidor");
+      handleError(
+        "Erro no servidor",
+        "Erro no servidor tente novamente em alguns instantes"
+      );
     }
   },
 
@@ -22,7 +34,8 @@ export const api = {
       const newProduct = await axios.post("/product/create", product);
       return newProduct.data;
     } catch (err: any) {
-      alert("Erro ao criar o produto");
+      console.log(err);
+      handleError("Erro ao criar o produto", err.response.data.message[0]);
     }
   },
 
@@ -33,7 +46,10 @@ export const api = {
         return true;
       }
     } catch (err: any) {
-      alert("Erro ao deletar o produto");
+      handleError(
+        "Erro ao deletar produto",
+        "Ocorreu um erro ao deletar o produto, por favor tente novamente mais tarde!"
+      );
     }
   },
 };

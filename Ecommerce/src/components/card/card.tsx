@@ -1,6 +1,7 @@
 import { api } from "../../utils/api/api";
 import { Product } from "../../utils/types/product.type";
 import { CardSection, ButtonsDiv, Buttons } from "./styles";
+import swal from "sweetalert";
 
 interface CardProps extends Product {
   updatePage: () => void;
@@ -15,10 +16,35 @@ export function Card({
   updatePage,
 }: CardProps) {
   async function DeleteCard() {
-    const isDeleted = await api.deleteProduct(id);
-    if (isDeleted) {
-      updatePage();
-    }
+    swal({
+      title: "Deletar Produto?",
+      text: "Tem certeza que deseja deletar este produto?",
+      icon: "warning",
+      dangerMode: true,
+      buttons: {
+        cancel: {
+          text: "Cancelar",
+          value: null,
+          visible: true,
+          closeModal: true,
+          className: "",
+        },
+        confirm: {
+          text: "Confirmar",
+          value: true,
+          visible: true,
+          closeModal: true,
+        },
+      },
+    }).then(async (res) => {
+      console.log(res);
+      if (res) {
+        const isDeleted = await api.deleteProduct(id);
+        if (isDeleted) {
+          updatePage();
+        }
+      }
+    });
   }
 
   return (

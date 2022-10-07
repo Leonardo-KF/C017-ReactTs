@@ -4,8 +4,9 @@ import { Footer } from "./components/footer/footer";
 import { Header } from "./components/header/header";
 import { Home } from "./pages/home/home";
 import { Register } from "./pages/register/register";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CreateProduct } from "./pages/createProduct/createProduct";
+import { Login } from "./pages/login/login";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle, { Content } from "./styles/global";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/create" element={<CreateProduct />} />
           <Route path="/update/:id" element={<CreateProduct />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Content>
       <Footer />

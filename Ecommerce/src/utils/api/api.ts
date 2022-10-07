@@ -81,7 +81,7 @@ export const api = {
     try {
       const userCreate = await axios.post("/user/register", user);
       return userCreate.data;
-    } catch (err) {
+    } catch (err: any) {
       handleError("Erro ao atualizar o produto", err.response.data.message[0]);
     }
   },

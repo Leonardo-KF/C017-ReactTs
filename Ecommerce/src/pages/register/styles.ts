@@ -21,9 +21,6 @@ export const RegisterSection = styled.section`
     height: 1.6rem;
     margin-bottom: 10px;
   }
-
-  button {
-  }
 `;
 
 export const PasswordDiv = styled.div`
@@ -34,7 +31,7 @@ export const PasswordDiv = styled.div`
     display: flex;
     width: 100%;
     border: none;
-    border-radius: 8px 0px 0px 8px;
+    border-radius: 8px 0px 0px 8px !important;
   }
 
   button {

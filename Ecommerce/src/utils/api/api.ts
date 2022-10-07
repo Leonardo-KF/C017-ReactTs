@@ -1,4 +1,4 @@
-import { Product, ProductInput } from "../types/product.type";
+import { Product, ProductInput, UserInput, User } from "../types/product.type";
 import axios from "axios";
 import swal from "sweetalert";
 
@@ -73,6 +73,15 @@ export const api = {
       );
       return updatedProduct.data;
     } catch (err: any) {
+      handleError("Erro ao atualizar o produto", err.response.data.message[0]);
+    }
+  },
+
+  resgisterUser: async (user: UserInput): Promise<User | undefined> => {
+    try {
+      const userCreate = await axios.post("/user/register", user);
+      return userCreate.data;
+    } catch (err) {
       handleError("Erro ao atualizar o produto", err.response.data.message[0]);
     }
   },

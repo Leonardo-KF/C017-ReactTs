@@ -1,5 +1,7 @@
 import { useState, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { api } from "../../utils/api/api";
 
 import { RegisterSection, PasswordDiv, ButtonSection } from "./styles";
 
@@ -14,6 +16,8 @@ export function Register() {
     confirmPassword: false,
   });
 
+  const navigate = useNavigate();
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -22,10 +26,17 @@ export function Register() {
       email: event.currentTarget.email.value,
       password: event.currentTarget.password.value,
       passwordConfirmation: event.currentTarget.confirmPassword.value,
-      bithdate: event.currentTarget.birthdate.value,
+      birthdate: event.currentTarget.birthdate.value,
       imageURL: event.currentTarget.image.value,
     };
+
     console.log(newUser);
+
+    const user = await api.resgisterUser(newUser);
+    console.log(user);
+    if (user) {
+      navigate("/login");
+    }
   }
 
   return (

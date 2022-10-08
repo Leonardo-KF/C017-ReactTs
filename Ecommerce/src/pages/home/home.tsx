@@ -25,6 +25,7 @@ export function Home() {
     <CardListDiv>
       {products.map((product) => (
         <Card
+          key={product.id}
           id={product.id}
           description={product.description}
           imageURL={product.imageURL}

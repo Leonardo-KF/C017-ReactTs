@@ -1,4 +1,10 @@
-import { Product, ProductInput, UserInput, User } from "../types/product.type";
+import {
+  Product,
+  ProductInput,
+  UserInput,
+  User,
+  SignIn,
+} from "../types/product.type";
 import axios from "axios";
 import swal from "sweetalert";
 
@@ -82,7 +88,20 @@ export const api = {
       const userCreate = await axios.post("/user/register", user);
       return userCreate.data;
     } catch (err: any) {
-      handleError("Erro ao atualizar o produto", err.response.data.message[0]);
+      handleError("Erro ao registrar o usuário", err.response.data.message[0]);
+    }
+  },
+
+  signIn: async (loginData: SignIn): Promise<LoginResponse | undefined> => {
+    try {
+      const login = await axios.post("/auth/login", loginData);
+      localStorage.setItem("token", login.data.token);
+      return login.data;
+    } catch (err: any) {
+      handleError(
+        "Email ou senha incorretos tente novamente",
+        err.response.data.message[0]
+      );
     }
   },
 };

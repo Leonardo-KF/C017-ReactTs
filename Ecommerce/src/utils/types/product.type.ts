@@ -30,3 +30,13 @@ export type User = {
   imageURL: string;
   products?: Product[];
 };
+
+export type SignIn = {
+  email: string;
+  password: string;
+};
+
+export type LoginResponse = {
+  token: string;
+  user: User;
+};

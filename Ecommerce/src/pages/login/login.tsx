@@ -1,10 +1,13 @@
 import { FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { api } from "../../utils/api/api";
 import { ButtonSection, PasswordDiv } from "../register/styles";
 import { LoginSection } from "./styles";
 
 export function Login() {
   const [viewPassword, setViewPassword] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -14,7 +17,10 @@ export function Login() {
       password: event.currentTarget.password.value,
     };
 
-    console.log(login);
+    const userData = await api.signIn(login);
+    if (userData) {
+      navigate("/");
+    }
   }
 
   return (

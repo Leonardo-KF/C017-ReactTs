@@ -9,6 +9,8 @@ import { Login } from "./pages/login/login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle, { Content } from "./styles/global";
 
+// HOC - High Order Component
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <GlobalStyle />

@@ -4,12 +4,15 @@ import {
   UserInput,
   User,
   SignIn,
+  LoginResponse,
 } from "../types/product.type";
 import axios from "axios";
 import swal from "sweetalert";
 
 axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.headers.common["Authorization"] =
+  "Bearer " + localStorage.getItem("token");
 
 function handleError(text: string, description: string) {
   swal({
@@ -102,6 +105,15 @@ export const api = {
         "Email ou senha incorretos tente novamente",
         err.response.data.message[0]
       );
+    }
+  },
+
+  getLoggedUser: async (): Promise<User | undefined> => {
+    try {
+      const user = await axios.get("/auth/profile");
+      return user.data;
+    } catch (err: any) {
+      console.log(err);
     }
   },
 };

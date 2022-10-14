@@ -7,6 +7,8 @@ import { Register } from "./pages/register/register";
 import { CreateProduct } from "./pages/createProduct/createProduct";
 import { Login } from "./pages/login/login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Auth } from "./auth/auth";
+import { AuthHoc } from "./auth/authHoc";
 import GlobalStyle, { Content } from "./styles/global";
 
 // HOC - High Order Component
@@ -16,9 +18,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <GlobalStyle />
     <BrowserRouter>
       <Header />
+      <Auth />
       <Content>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<AuthHoc children={<Home />} />} />
           <Route path="/create" element={<CreateProduct />} />
           <Route path="/update/:id" element={<CreateProduct />} />
           <Route path="/register" element={<Register />} />

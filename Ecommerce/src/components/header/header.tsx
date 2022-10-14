@@ -30,7 +30,14 @@ export function Header() {
             Cadastrar Produto
           </button>
           <button>Carrinho</button>
-          <button>Logout</button>
+          <button
+            onClick={() => {
+              localStorage.removeItem("token");
+              navigate("/login");
+            }}
+          >
+            Logout
+          </button>
         </div>
       </HeaderButtons>
     </HeaderComponent>

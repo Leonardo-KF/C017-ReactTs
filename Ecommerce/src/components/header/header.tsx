@@ -22,22 +22,34 @@ export function Header() {
       </HeaderSearch>
       <HeaderButtons>
         <div>
-          <button
-            onClick={() => {
-              navigate("/create");
-            }}
-          >
-            Cadastrar Produto
-          </button>
-          <button>Carrinho</button>
-          <button
-            onClick={() => {
-              localStorage.removeItem("token");
-              navigate("/login");
-            }}
-          >
-            Logout
-          </button>
+          {localStorage.getItem("token") ? (
+            <button
+              onClick={() => {
+                navigate("/create");
+              }}
+            >
+              Cadastrar Produto
+            </button>
+          ) : null}
+          {localStorage.getItem("token") ? <button>Carrinho</button> : null}
+          {localStorage.getItem("token") ? (
+            <button
+              onClick={() => {
+                localStorage.removeItem("token");
+                navigate("/login");
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
+              Cadastro
+            </button>
+          )}
         </div>
       </HeaderButtons>
     </HeaderComponent>

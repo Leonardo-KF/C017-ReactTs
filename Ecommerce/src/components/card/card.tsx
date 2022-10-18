@@ -1,6 +1,6 @@
 import { api } from "../../utils/api/api";
 import { Product } from "../../utils/types/product.type";
-import { CardSection, ButtonsDiv, Buttons } from "./styles";
+import { CardSection, ButtonsDiv, Buttons, Line } from "./styles";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 
@@ -50,11 +50,22 @@ export function Card({
     });
   }
 
+  const desconto = 40;
+
   return (
     <CardSection>
       <img src={imageURL} alt={name} />
       <h2>{name}</h2>
-      <span>{price}</span>
+      {desconto ? (
+        <>
+          <span
+            style={{ textDecorationLine: "underline" }}
+          >{`R$ ${price.toFixed(2)}`}</span>
+          <span>{`R$ ${(price * ((100 - 40) / 100)).toFixed(2)}`}</span>
+        </>
+      ) : (
+        <span>{`R$ ${price.toFixed(2)}`}</span>
+      )}
       <h3>{description}</h3>
       <ButtonsDiv>
         <Buttons

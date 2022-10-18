@@ -24,6 +24,13 @@ export const CardSection = styled.section`
   }
 `;
 
+export const Line = styled.div`
+  display: flex;
+  width: 30%;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background-color: black;
+`;
+
 export const ButtonsDiv = styled.div`
   display: flex;
   width: 100%;

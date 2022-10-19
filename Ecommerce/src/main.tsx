@@ -9,6 +9,7 @@ import { Login } from "./pages/login/login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Auth } from "./auth/auth";
 import { AuthHoc } from "./auth/authHoc";
+import { ProductsProvider } from "./context/context";
 import GlobalStyle, { Content } from "./styles/global";
 
 // HOC - High Order Component
@@ -17,20 +18,22 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <GlobalStyle />
     <BrowserRouter>
-      <Header />
-      <Auth />
-      <Content>
-        <Routes>
-          <Route path="/" element={<AuthHoc children={<Home />} />} />
-          <Route
-            path="/create"
-            element={<AuthHoc children={<CreateProduct />} />}
-          />
-          <Route path="/update/:id" element={<CreateProduct />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </Content>
+      <ProductsProvider>
+        <Header />
+        <Auth />
+        <Content>
+          <Routes>
+            <Route path="/" element={<AuthHoc children={<Home />} />} />
+            <Route
+              path="/create"
+              element={<AuthHoc children={<CreateProduct />} />}
+            />
+            <Route path="/update/:id" element={<CreateProduct />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Content>
+      </ProductsProvider>
       <Footer />
     </BrowserRouter>
   </React.StrictMode>

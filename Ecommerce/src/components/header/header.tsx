@@ -5,9 +5,16 @@ import {
   HeaderLogo,
   HeaderSearch,
 } from "./styles";
+import { useProducts } from "../../hooks/products";
 
 export function Header() {
   const navigate = useNavigate();
+
+  const { setFilter } = useProducts();
+
+  function searchProducts(productName: string) {
+    setFilter(productName);
+  }
 
   return (
     <HeaderComponent>
@@ -18,7 +25,13 @@ export function Header() {
         </Link>
       </HeaderLogo>
       <HeaderSearch>
-        <input type="text" placeholder="Search Product" />
+        <input
+          type="text"
+          placeholder="Search Product"
+          onChange={(e) => {
+            searchProducts(e.currentTarget.value);
+          }}
+        />
       </HeaderSearch>
       <HeaderButtons>
         <div>

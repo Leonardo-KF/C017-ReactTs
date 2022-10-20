@@ -1,23 +1,13 @@
-import { api } from "../../utils/api/api";
 import { Product } from "../../utils/types/product.type";
 import { CardSection, ButtonsDiv, Buttons, Line } from "./styles";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import { useProducts } from "../../hooks/products";
 
-interface CardProps extends Product {
-  updatePage: () => void;
-}
-
-export function Card({
-  description,
-  id,
-  imageURL,
-  name,
-  price,
-  updatePage,
-}: CardProps) {
+export function Card({ description, id, imageURL, name, price }: Product) {
   const navigate = useNavigate();
 
+  const { deleteProduct } = useProducts();
   async function DeleteCard() {
     swal({
       title: "Deletar Produto?",
@@ -40,12 +30,8 @@ export function Card({
         },
       },
     }).then(async (res) => {
-      console.log(res);
       if (res) {
-        const isDeleted = await api.deleteProduct(id);
-        if (isDeleted) {
-          updatePage();
-        }
+        deleteProduct(id);
       }
     });
   }

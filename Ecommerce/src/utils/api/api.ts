@@ -25,6 +25,7 @@ export const api = {
   getProducts: async (): Promise<Product[] | undefined> => {
     try {
       const products = await axios.get("/product");
+
       return products.data;
     } catch (err: any) {
       handleError(

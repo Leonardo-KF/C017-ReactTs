@@ -8,7 +8,6 @@ export function Home() {
   const { products } = useProducts();
 
   // KISS - Keep It Simple and Stupid
-
   return (
     <CardListDiv>
       {products.map((product) => {

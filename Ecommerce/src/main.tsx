@@ -28,7 +28,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
               path="/create"
               element={<AuthHoc children={<CreateProduct />} />}
             />
-            <Route path="/update/:id" element={<CreateProduct />} />
+            <Route
+              path="/update/:id"
+              element={<AuthHoc children={<CreateProduct />} />}
+            />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
           </Routes>

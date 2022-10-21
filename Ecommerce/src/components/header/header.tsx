@@ -21,7 +21,7 @@ export function Header() {
       <HeaderLogo>
         <Link to="/">
           <h1>Tabajara</h1>
-          <img src="./comprar.png" alt="logo" height="30px" width="30px" />
+          <img src="comprar.png" alt="logo" height="30px" width="30px" />
         </Link>
       </HeaderLogo>
       <HeaderSearch>

@@ -39,7 +39,9 @@ export const api = {
     product: ProductInput
   ): Promise<Product | undefined> => {
     try {
-      const newProduct = await axios.post("/product/create", product);
+      const data = product;
+      delete data.id;
+      const newProduct = await axios.post("/product/create", data);
       return newProduct.data;
     } catch (err: any) {
       console.log(err);

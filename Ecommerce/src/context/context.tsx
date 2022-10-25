@@ -6,8 +6,9 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Product } from "../utils/types/product.type";
+import { Product, ProductInput } from "../utils/types/product.type";
 import { api } from "../utils/api/api";
+import { v4 } from "uuid";
 
 type ProductsProviderProps = {
   children: ReactNode;
@@ -18,6 +19,7 @@ type ContextProps = {
   filter: string;
   setFilter: Dispatch<SetStateAction<string>>;
   deleteProduct: (productId: string) => void;
+  createProduct: (productData: ProductInput) => void;
 };
 
 const defaultValue = {
@@ -25,6 +27,7 @@ const defaultValue = {
   filter: "",
   setFilter: () => {},
   deleteProduct: () => {},
+  createProduct: () => {},
 };
 
 export const ProductsContext = createContext<ContextProps>(defaultValue);
@@ -50,13 +53,21 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
     await api.deleteProduct(productId);
   }
 
+  async function createProduct(productData: ProductInput) {
+    const newProduct = { ...productData, id: v4() };
+    setAllProducts([...allProducts, newProduct]);
+    await api.createProduct(productData);
+  }
+
+  console.log(products, allProducts);
+
   useEffect(() => {
     getProducts();
   }, []);
 
   return (
     <ProductsContext.Provider
-      value={{ products, filter, setFilter, deleteProduct }}
+      value={{ products, filter, setFilter, deleteProduct, createProduct }}
     >
       {children}
     </ProductsContext.Provider>

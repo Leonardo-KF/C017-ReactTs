@@ -3,10 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Product, ProductInput } from "../../utils/types/product.type";
 import { ContentDiv } from "./styles";
 import { api } from "../../utils/api/api";
+import { useProducts } from "../../hooks/products";
 
 export function CreateProduct() {
   const navigate = useNavigate();
   const [product, setProduct] = useState<Product>();
+  const { createProduct } = useProducts();
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -31,16 +34,13 @@ export function CreateProduct() {
     };
 
     // 0.5 Everton preço como string
-    let ProductResponse;
+
     if (id) {
       const productToUpdate = { ...newProduct, id: id };
-      ProductResponse = await api.updateProduct(productToUpdate);
-      console.log(ProductResponse);
+      const ProductResponse = await api.updateProduct(productToUpdate);
+      navigate("/");
     } else {
-      ProductResponse = await api.createProduct(newProduct);
-    }
-
-    if (ProductResponse) {
+      createProduct(newProduct);
       navigate("/");
     }
   }

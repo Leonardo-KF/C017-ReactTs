@@ -8,7 +8,7 @@ import { useProducts } from "../../hooks/products";
 export function CreateProduct() {
   const navigate = useNavigate();
   const [product, setProduct] = useState<Product>();
-  const { createProduct } = useProducts();
+  const { createProduct, updateProduct } = useProducts();
 
   const { id } = useParams();
 
@@ -37,7 +37,7 @@ export function CreateProduct() {
 
     if (id) {
       const productToUpdate = { ...newProduct, id: id };
-      const ProductResponse = await api.updateProduct(productToUpdate);
+      updateProduct(productToUpdate);
       navigate("/");
     } else {
       createProduct(newProduct);

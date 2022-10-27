@@ -6,6 +6,10 @@ import {
   HeaderSearch,
 } from "./styles";
 import { useProducts } from "../../hooks/products";
+import { Card } from "../card/card";
+import * as HoverCard from "@radix-ui/react-hover-card";
+import { TiShoppingCart } from "react-icons/ti";
+import { CartModal } from "../cartModal/cartModal";
 
 export function Header() {
   const navigate = useNavigate();
@@ -44,7 +48,19 @@ export function Header() {
               Cadastrar Produto
             </button>
           ) : null}
-          {localStorage.getItem("token") ? <button>Carrinho</button> : null}
+          {localStorage.getItem("token") ? (
+            <HoverCard.Root>
+              <HoverCard.Trigger>
+                <TiShoppingCart size={25} />
+              </HoverCard.Trigger>
+              <HoverCard.Portal>
+                <HoverCard.Content>
+                  <CartModal />
+                  <HoverCard.Arrow />
+                </HoverCard.Content>
+              </HoverCard.Portal>
+            </HoverCard.Root>
+          ) : null}
           {localStorage.getItem("token") ? (
             <button
               onClick={() => {

@@ -1,10 +1,10 @@
-export type Product = {
+export interface Product {
   id: string;
   name: string;
   description: string;
   price: number;
   imageURL: string;
-};
+}
 
 export type ProductInput = {
   id?: string;
@@ -13,6 +13,10 @@ export type ProductInput = {
   price: number;
   imageURL: string;
 };
+
+export interface ProductToCart extends Product {
+  quantity: number;
+}
 
 export type UserInput = {
   name: string;

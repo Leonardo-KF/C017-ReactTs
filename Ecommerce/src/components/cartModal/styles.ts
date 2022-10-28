@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MainSection = styled.section`
   display: flex;
-  width: 300px;
+  width: 380px;
   background-color: whitesmoke;
   border-radius: 15px;
   flex-direction: column;
@@ -31,7 +31,7 @@ export const ProductSection = styled.section`
     display: flex;
     width: 20%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 
   button {
@@ -41,5 +41,15 @@ export const ProductSection = styled.section`
     align-items: center;
     justify-content: center;
     cursor: pointer;
+  }
+
+  h4 {
+    display: flex;
+    width: 50%;
+  }
+
+  span {
+    display: flex;
+    width: 20%;
   }
 `;

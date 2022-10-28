@@ -13,7 +13,7 @@ export function CartModal() {
   function getTotal() {
     let totalCart = 0;
     cart.forEach(({ quantity, price }) => {
-      totalCart = total + quantity * price;
+      totalCart = totalCart + quantity * price;
     });
     setTotal(totalCart);
   }
@@ -34,8 +34,8 @@ export function CartModal() {
       ) : (
         cart.map((product) => {
           return (
-            <ProductSection>
-              <h3>{product.name}</h3>
+            <ProductSection key={product.id}>
+              <h4>{product.name}</h4>
               <section>
                 <button
                   onClick={() => {
@@ -44,7 +44,7 @@ export function CartModal() {
                 >
                   <IoAddCircleOutline size={18} />
                 </button>
-                <span>{product.quantity}</span>
+                <h3>{product.quantity}</h3>
                 <button
                   onClick={() => {
                     downQuantity(product.id);

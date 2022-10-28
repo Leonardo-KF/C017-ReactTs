@@ -54,13 +54,25 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
   // Funções para lidar com o carrinho
 
   function addToCart(productData: Product) {
-    const newCart = cart.map((product) => {
-      if (product.id === productData.id) {
-        return { ...product, quantity: product.quantity + 1 };
-      }
-      return { ...productData, quantity: 1 };
-    });
-    setCart(newCart);
+    if (
+      cart.length === 0 ||
+      cart.find((product) => product.id === productData.id) === undefined
+    ) {
+      const newCart = cart;
+      newCart.push({ ...productData, quantity: 1 });
+      setCart(newCart);
+    } else {
+      const updatedCart = cart.map((product, index) => {
+        if (product.id === productData.id) {
+          return {
+            ...product,
+            quantity: product.quantity + 1,
+          };
+        }
+        return product;
+      });
+      setCart(updatedCart);
+    }
   }
 
   function deleteToCart(productId: string) {
@@ -69,7 +81,7 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
   }
 
   function downQuantity(productId: string) {
-    const newCart = cart.filter((product) => {
+    const newCart = cart.map((product) => {
       if (product.id === productId) {
         if (product.quantity > 1) {
           return { ...product, quantity: product.quantity - 1 };
@@ -77,7 +89,12 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
       }
       return product;
     });
+
+    console.log("Carrinho", newCart);
+    setCart(newCart);
   }
+
+  console.log(cart);
 
   // funções para lidar com produtos - UI OTIMISTA
   const products = allProducts.filter((product) =>

@@ -1,5 +1,11 @@
 import { Product } from "../../utils/types/product.type";
-import { CardSection, ButtonsDiv, Buttons, Line } from "./styles";
+import {
+  CardSection,
+  ButtonsDiv,
+  Buttons,
+  BuySection,
+  CardFooter,
+} from "./styles";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import { useProducts } from "../../hooks/products";
@@ -7,7 +13,7 @@ import { useProducts } from "../../hooks/products";
 export function Card({ description, id, imageURL, name, price }: Product) {
   const navigate = useNavigate();
 
-  const { deleteProduct } = useProducts();
+  const { deleteProduct, addToCart } = useProducts();
   async function DeleteCard() {
     swal({
       title: "Deletar Produto?",
@@ -53,19 +59,33 @@ export function Card({ description, id, imageURL, name, price }: Product) {
         <span>{`R$ ${price.toFixed(2)}`}</span>
       )}
       <h3>{description}</h3>
-      <ButtonsDiv>
-        <Buttons
-          color="blue"
-          onClick={() => {
-            navigate("/update/" + id);
-          }}
-        >
-          Editar
-        </Buttons>
-        <Buttons color="red" onClick={DeleteCard}>
-          Deletar
-        </Buttons>
-      </ButtonsDiv>
+      <CardFooter>
+        <ButtonsDiv>
+          <Buttons
+            color="blue"
+            width="60px"
+            onClick={() => {
+              navigate("/update/" + id);
+            }}
+          >
+            Editar
+          </Buttons>
+          <Buttons color="red" width="60px" onClick={DeleteCard}>
+            Deletar
+          </Buttons>
+        </ButtonsDiv>
+        <BuySection>
+          <Buttons
+            color="green"
+            width="120px"
+            onClick={() => {
+              addToCart({ description, id, imageURL, name, price });
+            }}
+          >
+            Comprar Produto
+          </Buttons>
+        </BuySection>
+      </CardFooter>
     </CardSection>
   );
 }

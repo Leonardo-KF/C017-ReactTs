@@ -5,29 +5,69 @@ import {
   IoRemoveCircleOutline,
   IoCloseOutline,
 } from "react-icons/io5";
+import { useEffect, useState } from "react";
 export function CartModal() {
-  const { cart } = useProducts();
+  const { cart, addToCart, downQuantity, deleteToCart } = useProducts();
+  const [total, setTotal] = useState<number>(0);
+
+  function getTotal() {
+    let totalCart = 0;
+    cart.forEach(({ quantity, price }) => {
+      totalCart = total + quantity * price;
+    });
+    setTotal(totalCart);
+  }
+
+  useEffect(() => {
+    getTotal();
+  }, [cart]);
+
   return (
     <MainSection>
       <h2>Items no carrinho:</h2>
-      <ProductSection>
-        <h3>produto</h3>
-        <section>
-          <button>
-            <IoAddCircleOutline size={18} />
-          </button>
-          <span>2</span>
-          <button>
-            <IoRemoveCircleOutline size={18} />
-          </button>
-        </section>
-        <span>R$20</span>
-        <button>
-          <IoCloseOutline size={18} color="red" />
-        </button>
-      </ProductSection>
+
+      {cart.length === 0 ? (
+        <>
+          <h3>Nenhum item no carrinho!</h3>
+          <h4>Adicione algo ao carrinho!!</h4>
+        </>
+      ) : (
+        cart.map((product) => {
+          return (
+            <ProductSection>
+              <h3>{product.name}</h3>
+              <section>
+                <button
+                  onClick={() => {
+                    addToCart(product);
+                  }}
+                >
+                  <IoAddCircleOutline size={18} />
+                </button>
+                <span>{product.quantity}</span>
+                <button
+                  onClick={() => {
+                    downQuantity(product.id);
+                  }}
+                >
+                  <IoRemoveCircleOutline size={18} />
+                </button>
+              </section>
+              <span>R$ {(product.quantity * product.price).toFixed(2)}</span>
+              <button
+                onClick={() => {
+                  deleteToCart(product.id);
+                }}
+              >
+                <IoCloseOutline size={18} color="red" />
+              </button>
+            </ProductSection>
+          );
+        })
+      )}
+
       <div>
-        <h2>Total: R$40</h2>
+        <h2>Total: R$ {total.toFixed(2)}</h2>
       </div>
     </MainSection>
   );
